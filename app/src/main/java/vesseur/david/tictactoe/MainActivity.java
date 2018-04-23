@@ -16,11 +16,7 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     public int a, b, c, d, e, f, g, h, x;
-
     public int winsX, winsO, draws;
-
-
-
     Game game;
 
     @Override
@@ -42,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         winsX = 0;
         winsO = 0;
         draws = 0;
+
     }
     public void resetClicked(View view){
         resetGame();
@@ -54,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void computerClicked(View view){
-        CheckBox checkbox = (CheckBox) view;
-        if (checkbox.isChecked()) {
 
             int[] coord = game.computerMove();
 
@@ -98,8 +93,28 @@ public class MainActivity extends AppCompatActivity {
             if (coord[2] == 2) {
                 button.setText("O");
             }
+        int win = game.checkWin();
+        if (win == 1) {
+            ((TextView) findViewById(R.id.turnText)).setText("DRAW");
+            draws += 1;
+//            ((TextView)findViewById(R.id.tester)).setText("hoi");
+            ((TextView) findViewById(R.id.drawsText)).setText("Draws: " + String.valueOf(draws));
         }
-    }
+        if (win == 2) {
+            ((TextView) findViewById(R.id.turnText)).setText("X WINS");
+            winsX += 1;
+            ((TextView) findViewById(R.id.winsTextX)).setText("Wins X: " + String.valueOf(winsX));
+        }
+        if (win == 3) {
+            ((TextView) findViewById(R.id.turnText)).setText("O WINS");
+            winsO += 1;
+            ((TextView) findViewById(R.id.winsTextO)).setText("Wins O: " + String.valueOf(winsO));
+        }
+        if (win != 0){
+            resetGame();
+        }
+        }
+
 
     public void resetGame(){
         game = new Game();
@@ -131,10 +146,6 @@ public class MainActivity extends AppCompatActivity {
         int row = 0, column = 0;
         int buttonid = view.getId();
         int tilecount = 0;
-
-
-
-
 
 
         int[] buttons = {a, b, c, d, e, f, g, h, x};
@@ -183,8 +194,6 @@ public class MainActivity extends AppCompatActivity {
             button = findViewById(R.id.button33);
         }
 
-
-
         switch(tile) {
             case CROSS:
                 button.setText("X");
@@ -219,19 +228,5 @@ public class MainActivity extends AppCompatActivity {
         if (win != 0){
             resetGame();
         }
-
-//            new Timer().schedule(new TimerTask() {
-//                @Override
-//                public void run() {
-//                    resetGame();
-//                    // this code will be executed after 2 seconds
-//                }
-//            }, 2000);
-
-
-
-
-
     }
-
 }

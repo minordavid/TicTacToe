@@ -21,6 +21,7 @@ public class Game {
     private int movesPlayed;
     private Boolean gameOver;
 
+
     public Game() {
         board = new Tile[BOARD_SIZE][BOARD_SIZE];
         for(int i=0; i<BOARD_SIZE; i++)
@@ -65,6 +66,7 @@ public class Game {
 
             }
         }
+        movesPlayed += 1;
 
         return new int[]{row, column, turn};
     }

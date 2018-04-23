@@ -112,12 +112,11 @@
 
     </GridLayout>
 
-    <CheckBox
-        android:id="@+id/vsComputer"
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="computerClicked"
-        android:text="VS Computer" />
+        android:text="Computermove" />
 
     <Button
         android:id="@+id/button10"
